@@ -9,7 +9,7 @@
 </repository>
 
 <dependency>
-    <groupId>com.github.hamza-cskn.obliviate-invs</groupId>
+    <groupId>com.github.Light-MC.obliviate-invs</groupId>
     <artifactId>core</artifactId>
     <version>{INSERT_VERSION_HERE}</version>
 </dependency>
