@@ -5,6 +5,7 @@ import mc.obliviate.inventory.Icon;
 import mc.obliviate.inventory.configurable.util.GuiSerializer;
 import mc.obliviate.util.placeholder.PlaceholderUtil;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -135,11 +136,11 @@ public class ConfigurableGui extends Gui {
     }
 
     public ConfigIcon getConfigIcon(@Nonnull String sectionName) {
-        return new ConfigIcon(getConfigItem(sectionName), getIconsSection(sectionName));
+        return new ConfigIcon(getConfigItem(sectionName), getIconsSection(sectionName), player);
     }
 
     public ConfigIcon getConfigIcon(@Nonnull String sectionName, @Nullable PlaceholderUtil placeholderUtil) {
-        return new ConfigIcon(getConfigItem(sectionName, placeholderUtil), getIconsSection(sectionName));
+        return new ConfigIcon(getConfigItem(sectionName, placeholderUtil), getIconsSection(sectionName), player);
     }
 
     public void putDysfunctionalIcons() {
@@ -212,14 +213,14 @@ public class ConfigurableGui extends Gui {
 
     @Nonnull
     public ConfigIcon addConfigIcon(@Nonnull String configName, @Nullable PlaceholderUtil placeholderUtil, Function<ItemStack, ItemStack> refactorFunction) {
-        final ConfigIcon icon = new ConfigIcon(refactorFunction.apply(getConfigItem(configName, placeholderUtil)), getIconsSection(configName));
+        final ConfigIcon icon = new ConfigIcon(refactorFunction.apply(getConfigItem(configName, placeholderUtil)), getIconsSection(configName), player);
         addItem(getConfigSlot(configName), icon);
         return icon;
     }
 
     @Nonnull
     public ConfigIcon addConfigIcon(@Nonnull String configName, Function<ItemStack, ItemStack> refactorFunction) {
-        final ConfigIcon icon = new ConfigIcon(refactorFunction.apply(getConfigItem(configName)), getIconsSection(configName));
+        final ConfigIcon icon = new ConfigIcon(refactorFunction.apply(getConfigItem(configName)), getIconsSection(configName), player);
         addItem(getConfigSlot(configName), icon);
         return icon;
     }

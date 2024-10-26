@@ -20,11 +20,16 @@ public class InventoryAPI {
     private final HashMap<UUID, Gui> players = new HashMap<>();
     private final Listener listener = new InvListener(this);
     private boolean initialized = false;
+    private static boolean translatePlaceholders = false;
 
     public InventoryAPI(JavaPlugin plugin) {
         if (plugin == null) throw new IllegalArgumentException("Java plugin cannot be null!");
         this.plugin = plugin;
         InventoryAPI.instance = this;
+
+        if (plugin.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            translatePlaceholders = true;
+        }
     }
 
     public void init() {
@@ -75,6 +80,10 @@ public class InventoryAPI {
 
     public Listener getListener() {
         return this.listener;
+    }
+
+    public static boolean translatePlaceholders() {
+        return translatePlaceholders;
     }
 
 }

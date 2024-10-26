@@ -1,7 +1,9 @@
 package mc.obliviate.inventory;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.ItemFlag;
@@ -277,5 +279,141 @@ public class Icon implements GuiIcon {
 		return item;
 	}
 
-}
+	/**
+	 * sets display name of the icon with placeholders
+	 *
+	 * @param name display name
+	 * @return this
+	 */
+	@Nonnull
+	public Icon setName(final String name, final Player player) {
+		if (!InventoryAPI.translatePlaceholders()) return this;
+		final ItemMeta meta = item.getItemMeta();
+		if (meta == null) return this;
+		meta.setDisplayName(PlaceholderAPI.setPlaceholders(player, name));
+		item.setItemMeta(meta);
+		return this;
+	}
 
+	/**
+	 * sets lore of the icon with placeholders
+	 *
+	 * @param lore lore
+	 * @return this
+	 */
+	@Nonnull
+	public Icon setLore(final List<String> lore, final Player player) {
+		if (!InventoryAPI.translatePlaceholders()) return this;
+		final ItemMeta meta = item.getItemMeta();
+		if (meta == null) return this;
+		List<String> translatedLore = new ArrayList<>();
+		for (String line : lore) {
+			translatedLore.add(PlaceholderAPI.setPlaceholders(player, line));
+		}
+		meta.setLore(translatedLore);
+		item.setItemMeta(meta);
+		return this;
+	}
+
+	/**
+	 * sets lore of icon with placeholders
+	 *
+	 * @param lore lore
+	 * @return this
+	 */
+	@Nonnull
+	public Icon setLore(final Player player, final String... lore) {
+		if (!InventoryAPI.translatePlaceholders()) return this;
+		return setLore(new ArrayList<>(Arrays.asList(lore)), player);
+	}
+
+	/**
+	 * adds new string lines to end of lore of the icon with placeholders
+	 *
+	 * @param newLines lore lines
+	 * @return this
+	 */
+	@Nonnull
+	public Icon appendLore(final List<String> newLines, final Player player) {
+		if (!InventoryAPI.translatePlaceholders()) return this;
+		final ItemMeta meta = item.getItemMeta();
+		if (meta == null) return this;
+		List<String> lore = meta.getLore();
+		if (lore != null) {
+			for (String line : newLines) {
+				lore.add(PlaceholderAPI.setPlaceholders(player, line));
+			}
+		} else {
+			lore = new ArrayList<>();
+			for (String line : newLines) {
+				lore.add(PlaceholderAPI.setPlaceholders(player, line));
+			}
+		}
+		return setLore(lore, player);
+	}
+
+	/**
+	 * adds new string lines to end of lore of the icon with placeholders
+	 *
+	 * @param newLines lore lines
+	 * @return this
+	 */
+	@Nonnull
+	public Icon appendLore(final Player player, final String... newLines) {
+		if (!InventoryAPI.translatePlaceholders()) return this;
+		return appendLore(new ArrayList<>(Arrays.asList(newLines)), player);
+	}
+
+	/**
+	 * inserts new lines to lore of the icon with placeholders
+	 *
+	 * @param index    line index. entry 0 adds new line as first line.
+	 * @param newLines lore lines
+	 * @return this
+	 */
+	@Nonnull
+	public Icon insertLore(final int index, final Player player, final String... newLines) {
+		if (!InventoryAPI.translatePlaceholders()) return this;
+		return insertLore(index, new ArrayList<>(Arrays.asList(newLines)), player);
+	}
+
+	/**
+	 * inserts new lines to lore of the icon with placeholders
+	 *
+	 * @param index    line index. entry 0 adds new line as first line.
+	 * @param newLines lore lines
+	 * @return this
+	 */
+	@Nonnull
+	public Icon insertLore(final int index, final List<String> newLines, final Player player) {
+		if (!InventoryAPI.translatePlaceholders()) return this;
+		final ItemMeta meta = item.getItemMeta();
+		if (meta == null) return this;
+		List<String> lore = meta.getLore();
+		if (lore != null) {
+			for (int i = 0; i < newLines.size(); i++) {
+				lore.add(index + i, PlaceholderAPI.setPlaceholders(player, newLines.get(i)));
+			}
+		} else {
+			lore = new ArrayList<>();
+			for (String line : newLines) {
+				lore.add(PlaceholderAPI.setPlaceholders(player, line));
+			}
+		}
+		return setLore(lore, player);
+	}
+
+	@Nonnull
+	public Icon forceTranslateAllPlaceholders(Player player) {
+		if (!InventoryAPI.translatePlaceholders()) return this;
+		final ItemMeta meta = item.getItemMeta();
+		if (meta == null) return this;
+		if (meta.hasDisplayName()) {
+			this.setName(meta.getDisplayName(), player);
+		}
+		if (meta.hasLore()) {
+			this.setLore(meta.getLore(), player);
+		}
+		return this;
+	}
+}
