@@ -1,4 +1,4 @@
-![Downloads](https://jitpack.io/v/hamza-cskn/obliviate-invs/month.svg) [![](https://jitpack.io/v/hamza-cskn/obliviate-invs.svg)](https://jitpack.io/#hamza-cskn/obliviate-invs) <-- current version
+![Downloads](https://jitpack.io/v/Light-MC/obliviate-invs/month.svg) [![](https://jitpack.io/v/Light-MC/obliviate-invs.svg)](https://jitpack.io/#Light-MC/obliviate-invs) <-- current version
 
 ## Maven
 
@@ -32,7 +32,7 @@ ObliviateInvs is an inventory GUI library for Bukkit servers.
 
 ## Setup
 
-Visit [wiki](https://github.com/Obliviated/obliviate-invs/wiki/) page to see usage guide.
+Visit [wiki](https://github.com/Light-MC/obliviate-invs/wiki/) page to see usage guide.
 
 ## Features
 
