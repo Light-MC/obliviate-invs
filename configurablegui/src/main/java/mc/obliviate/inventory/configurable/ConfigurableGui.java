@@ -145,32 +145,32 @@ public class ConfigurableGui extends Gui {
 
     public void putDysfunctionalIcons() {
         GuiSerializer.putDysfunctionalIcons(this, this.guiConfigurationTable,
-                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), null, new ArrayList<>());
+                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), null, new ArrayList<>(), player);
     }
 
     public void putDysfunctionalIcons(@Nullable PlaceholderUtil placeholderUtil) {
         GuiSerializer.putDysfunctionalIcons(this, this.guiConfigurationTable,
-                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), placeholderUtil, new ArrayList<>());
+                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), placeholderUtil, new ArrayList<>(), player);
     }
 
     public void putDysfunctionalIcons(@Nonnull List<String> functionalSlots) {
         GuiSerializer.putDysfunctionalIcons(this, this.guiConfigurationTable,
-                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), null, functionalSlots);
+                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), null, functionalSlots, player);
     }
 
     public void putDysfunctionalIcons(@Nonnull String... functionalSlots) {
         GuiSerializer.putDysfunctionalIcons(this, this.guiConfigurationTable,
-                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), null, Arrays.asList(functionalSlots));
+                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), null, Arrays.asList(functionalSlots), player);
     }
 
     public void putDysfunctionalIcons(@Nullable PlaceholderUtil placeholderUtil, @Nonnull String... functionalSlots) {
         GuiSerializer.putDysfunctionalIcons(this, this.guiConfigurationTable,
-                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), placeholderUtil, Arrays.asList(functionalSlots));
+                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), placeholderUtil, Arrays.asList(functionalSlots), player);
     }
 
     public void putDysfunctionalIcons(@Nullable PlaceholderUtil placeholderUtil, @Nonnull List<String> functionalSlots) {
         GuiSerializer.putDysfunctionalIcons(this, this.guiConfigurationTable,
-                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), placeholderUtil, functionalSlots);
+                this.guiConfigurationTable.getMenusSection(getIconsSectionPath()), placeholderUtil, functionalSlots, player);
     }
 
     /**

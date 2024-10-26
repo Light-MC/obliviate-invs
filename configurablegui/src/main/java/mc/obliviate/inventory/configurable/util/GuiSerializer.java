@@ -6,6 +6,7 @@ import mc.obliviate.inventory.configurable.DysfunctionalConfigIcon;
 import mc.obliviate.inventory.configurable.GuiConfigurationTable;
 import mc.obliviate.util.placeholder.PlaceholderUtil;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -15,7 +16,7 @@ import java.util.List;
 public class GuiSerializer {
 
     @SuppressWarnings("ConstantConditions")
-    public static void putDysfunctionalIcons(@Nonnull ConfigurableGui gui, @Nonnull GuiConfigurationTable table, @Nonnull ConfigurationSection iconsSection, @Nullable PlaceholderUtil placeholderUtil, @Nonnull List<String> functionalSlots) {
+    public static void putDysfunctionalIcons(@Nonnull ConfigurableGui gui, @Nonnull GuiConfigurationTable table, @Nonnull ConfigurationSection iconsSection, @Nullable PlaceholderUtil placeholderUtil, @Nonnull List<String> functionalSlots, @Nonnull Player player) {
         Preconditions.checkNotNull(gui, "dysfunctional icons could not put because gui was null!");
         Preconditions.checkNotNull(iconsSection, "null configuration section given!");
 
@@ -28,7 +29,7 @@ public class GuiSerializer {
 
             final int slotNo = section.getInt(table.getSlotSectionName(), -1);
             if (slotNo >= 0) {
-                gui.addItem(slotNo, new DysfunctionalConfigIcon(gui.getGuiCache().getConfigItem(section, placeholderUtil, table), section));
+                gui.addItem(slotNo, new DysfunctionalConfigIcon(gui.getGuiCache().getConfigItem(section, placeholderUtil, table), section, player));
                 continue;
             }
 
@@ -36,7 +37,7 @@ public class GuiSerializer {
             if (!slots.isEmpty()) {
                 slots.forEach(slot -> {
                     ConfigurationSection iconSection = iconsSection.getConfigurationSection(sectionName);
-                    gui.addItem(slot, new DysfunctionalConfigIcon(gui.getGuiCache().getConfigItem(section, placeholderUtil, table), iconSection));
+                    gui.addItem(slot, new DysfunctionalConfigIcon(gui.getGuiCache().getConfigItem(section, placeholderUtil, table), iconSection, player));
                 });
             }
         }

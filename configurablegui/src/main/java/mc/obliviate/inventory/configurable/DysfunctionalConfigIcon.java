@@ -3,6 +3,7 @@ package mc.obliviate.inventory.configurable;
 import mc.obliviate.inventory.Icon;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.ItemStack;
@@ -12,12 +13,12 @@ import java.util.function.Consumer;
 
 public class DysfunctionalConfigIcon extends ConfigIcon {
 
-    public DysfunctionalConfigIcon(ItemStack item, ConfigurationSection section) {
-        super(item, section);
+    public DysfunctionalConfigIcon(ItemStack item, ConfigurationSection section, Player player) {
+        super(item, section, player);
     }
 
-    public DysfunctionalConfigIcon(Material material, ConfigurationSection section) {
-        super(material, section);
+    public DysfunctionalConfigIcon(Material material, ConfigurationSection section, Player player) {
+        super(material, section, player);
     }
 
     @Nonnull
