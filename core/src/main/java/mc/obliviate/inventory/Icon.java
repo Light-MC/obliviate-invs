@@ -416,4 +416,21 @@ public class Icon implements GuiIcon {
 		}
 		return this;
 	}
+
+	@Nonnull
+	public Icon replaceCustomPlaceholder(String placeholder, String value) {
+		final ItemMeta meta = item.getItemMeta();
+		if (meta == null) return this;
+		if (meta.hasDisplayName()) {
+			this.setName(meta.getDisplayName().replace(placeholder, value));
+		}
+		if (meta.hasLore()) {
+			List<String> lore = new ArrayList<>();
+			for (String line : meta.getLore()) {
+				lore.add(line.replace(placeholder, value));
+			}
+			this.setLore(lore);
+		}
+		return this;
+	}
 }
