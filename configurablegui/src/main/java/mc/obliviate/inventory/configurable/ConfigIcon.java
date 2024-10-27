@@ -27,7 +27,7 @@ public class ConfigIcon extends Icon {
     }
 
     @Override
-    public Object clone() {
-        return super.clone();
+    public ConfigIcon clone() {
+        return (ConfigIcon) super.clone();
     }
 }
