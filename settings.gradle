@@ -3,3 +3,5 @@ include 'configurablegui'
 include 'core'
 include 'advancedslot'
 include 'pagination'
+include 'fileguis'
+

@@ -218,6 +218,17 @@ public abstract class Gui implements InventoryHolder {
 		}
 	}
 
+	public void addOutline(GuiIcon icon) {
+		for (int i = 0; i < 9; i++) {
+			this.addItem(i, icon);
+			this.addItem(i + 9 * (size / 9 - 1), icon);
+		}
+		for (int i = 0; i < size / 9; i++) {
+			this.addItem(i * 9, icon);
+			this.addItem(i * 9 + 8, icon);
+		}
+	}
+
 	public void addItem(@Nonnegative int slot, @Nullable GuiIcon icon) {
 		if (this.inventory.getSize() <= slot) {
 			throw new IndexOutOfBoundsException("Slot cannot be bigger than inventory size! [ " + slot + " >= " + this.inventory.getSize() + " ]");

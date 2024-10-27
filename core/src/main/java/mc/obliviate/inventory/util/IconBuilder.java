@@ -2,7 +2,9 @@ package mc.obliviate.inventory.util;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import mc.obliviate.inventory.GuiIcon;
 import mc.obliviate.inventory.Icon;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -18,6 +20,12 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class IconBuilder {
+	public static GuiIcon fillIcon() {
+		return new IconBuilder(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.BLACK.getData()))
+				.setName(" ")
+				.build();
+	}
+
 	private final ItemStack itemStack;
 	private Consumer<InventoryClickEvent> clickAction;
 	private String name;
@@ -25,6 +33,10 @@ public class IconBuilder {
 
 	public IconBuilder(Material material) {
 		this.itemStack = new ItemStack(material);
+	}
+
+	public IconBuilder(ItemStack itemStack) {
+		this.itemStack = itemStack;
 	}
 
 	public IconBuilder setName(String name) {
