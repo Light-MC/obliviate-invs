@@ -1,0 +1,12 @@
+var adventure = "4.13.1"
+
+dependencies {
+    compileOnly project(':core')
+    compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+    implementation 'com.github.MrNemo64:player-chat-inputs:1.2.1'
+    compileOnly "net.kyori:adventure-api:$adventure"
+    compileOnly 'net.kyori:adventure-text-serializer-legacy:$adventure'
+    compileOnly 'net.kyori:adventure-text-serializer-gson:$adventure'
+}
+
+project.setLibsDirName('../../target')
