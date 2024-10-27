@@ -93,6 +93,10 @@ public class ConfigurableGui extends Gui {
         return getSectionPath() + "." + this.guiConfigurationTable.getIconsSectionName();
     }
 
+    public String getTemplateSectionPath() {
+        return getSectionPath() + "." + this.guiConfigurationTable.getTemplateSectionName();
+    }
+
     /**
      * Example section for<br>
      * iconSection = "example-icon"
@@ -107,6 +111,22 @@ public class ConfigurableGui extends Gui {
      */
     public ConfigurationSection getIconsSection(@Nonnull String iconSection) {
         return this.guiConfigurationTable.getMenusSection(getIconsSectionPath() + "." + iconSection);
+    }
+
+    /**
+     * Example section for<br>
+     * templateSection = "example-template"
+     *
+     * <pre>
+     * example-template:
+     *   material: STONE
+     *   slot: 0</pre>
+     *
+     * @param templateSection name of template
+     * @return sub configuration section of templates section
+     */
+    public ConfigurationSection getTemplateSection(@Nonnull String templateSection) {
+        return this.guiConfigurationTable.getMenusSection(getTemplateSectionPath() + "." + templateSection);
     }
 
     /**
@@ -141,6 +161,10 @@ public class ConfigurableGui extends Gui {
 
     public ConfigIcon getConfigIcon(@Nonnull String sectionName, @Nullable PlaceholderUtil placeholderUtil) {
         return new ConfigIcon(getConfigItem(sectionName, placeholderUtil), getIconsSection(sectionName), player);
+    }
+
+    public ConfigIcon getTemplateIcon(@Nonnull String sectionName) {
+        return new ConfigIcon(getConfigItem(sectionName), getTemplateSection(sectionName), player);
     }
 
     public void putDysfunctionalIcons() {

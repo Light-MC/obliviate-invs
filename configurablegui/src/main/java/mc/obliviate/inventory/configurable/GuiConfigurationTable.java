@@ -15,6 +15,7 @@ public class GuiConfigurationTable {
     private String titleSectionName = "title";
     private String sizeSectionName = "row";
     private String iconsSectionName = "icons";
+    private String templateSectionName = "templates";
 
     private String materialSectionName = "material";
     private String loreSectionName = "lore";
@@ -68,8 +69,16 @@ public class GuiConfigurationTable {
         return this.iconsSectionName;
     }
 
+    public String getTemplateSectionName() {
+        return this.templateSectionName;
+    }
+
     public void setIconsSectionName(@Nonnull String iconsSectionName) {
         this.iconsSectionName = iconsSectionName;
+    }
+
+    public void setTemplateSectionName(@Nonnull String templateSectionName) {
+        this.templateSectionName = templateSectionName;
     }
 
     public String getMaterialSectionName() {
