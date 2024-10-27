@@ -25,4 +25,9 @@ public class ConfigIcon extends Icon {
     public ConfigurationSection getSection() {
         return section;
     }
+
+    @Override
+    public Object clone() {
+        return super.clone();
+    }
 }

@@ -433,4 +433,13 @@ public class Icon implements GuiIcon {
 		}
 		return this;
 	}
+
+	@Override
+	protected Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);
+        }
+    }
 }
