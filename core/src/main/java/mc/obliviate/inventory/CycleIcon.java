@@ -17,6 +17,7 @@ public class CycleIcon<T> extends Icon {
     public CycleIcon(T initialValue, Map<T, ItemStack> toggleItems, Consumer<T> onSwitch) {
         super(toggleItems.get(initialValue));
 
+        this.value = initialValue;
         this.toggleItems = toggleItems;
         this.onSwitch = onSwitch;
     }
