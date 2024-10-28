@@ -37,6 +37,10 @@ public class ConfigurableGui extends Gui {
         setSize(guiConfigurationTable.getMenusSection(getSectionPath()).getInt(guiConfigurationTable.getSizeSectionName(), 0) * 9);
     }
 
+    protected void translateTitle(PlaceholderUtil placeholders) {
+        setTitle(placeholders.apply(getTitle()));
+    }
+
     public List<DysfunctionalConfigIcon> getDysfunctionalIcons() {
         return super.getItems().values().stream()
                 .filter(icon -> icon instanceof DysfunctionalConfigIcon)
