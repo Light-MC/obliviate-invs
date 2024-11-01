@@ -4,7 +4,6 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import mc.obliviate.inventory.GuiIcon;
 import mc.obliviate.inventory.Icon;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -21,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class IconBuilder {
 	public static GuiIcon fillIcon() {
-		return new IconBuilder(new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.BLACK.getData()))
+		return new IconBuilder(new ItemStack(Material.BLACK_STAINED_GLASS_PANE))
 				.setName(" ")
 				.build();
 	}
