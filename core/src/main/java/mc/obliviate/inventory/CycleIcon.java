@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class CycleIcon<T> extends Icon {
+public class CycleIcon<T extends Enum<T>> extends Icon {
 
     private T value;
     private final Map<T, ItemStack> toggleItems;
