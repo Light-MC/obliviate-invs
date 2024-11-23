@@ -133,10 +133,6 @@ public class ItemStackSerializer {
         applyEnchantmentsToItemStack(item, deserializeEnchantments(section, table));
 
         meta = item.getItemMeta();
-        if (section.isSet(table.getCustomModelDataSectionName()) && ServerVersionController.isServerVersionAtLeast(ServerVersionController.V1_14))
-            meta.setCustomModelData(section.getInt(table.getCustomModelDataSectionName()));
-        if (section.getBoolean(table.getUnbreakableSectionName()) && ServerVersionController.isServerVersionAtLeast(ServerVersionController.V1_11))
-            meta.setUnbreakable(true);
         if (section.isSet(table.getDurabilitySectionName()))
             item.setDurability((short) section.getInt(table.getDurabilitySectionName()));
         if (section.getBoolean(table.getGlowSectionName())) {
@@ -299,12 +295,6 @@ public class ItemStackSerializer {
             }
             if (!item.getItemMeta().getItemFlags().isEmpty()) {
                 section.set(table.getItemFlagsSectionName(), deserializeItemFlags(item.getItemMeta().getItemFlags()));
-            }
-            if (ServerVersionController.isServerVersionAtLeast(ServerVersionController.V1_11)) {
-                section.set(table.getUnbreakableSectionName(), item.getItemMeta().isUnbreakable());
-            }
-            if (ServerVersionController.isServerVersionAtLeast(ServerVersionController.V1_14) && item.getItemMeta().hasCustomModelData()) {
-                section.set(table.getCustomModelDataSectionName(), item.getItemMeta().getCustomModelData());
             }
         }
     }

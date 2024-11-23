@@ -29,7 +29,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SpawnEggMeta;
 import org.bukkit.potion.Potion;
 
 import javax.annotation.Nonnull;
@@ -87,8 +86,6 @@ public enum XMaterial {
     ACACIA_WOOD(0, "LOG_2"),
     ACTIVATOR_RAIL,
     /**
-     * <a href="https://minecraft.gamepedia.com/Air">Air</a>
-     * {@link Material#isAir()}
      *
      * @see #VOID_AIR
      * @see #CAVE_AIR
@@ -1837,15 +1834,6 @@ public enum XMaterial {
         // Maps are given different data values for different parts of the map also some plugins use negative values for custom images.
         // Items that have durability, such as armor and tools don't use the data value to distinguish their material.
         byte data = (byte) (Data.ISFLAT || material.equals("MAP") || item.getType().getMaxDurability() > 0 ? 0 : item.getDurability());
-
-        // Versions 1.9-1.12 didn't really use the items data value.
-        if (supports(9) && !supports(13) && item.hasItemMeta() && material.equals("MONSTER_EGG")) {
-            ItemMeta meta = item.getItemMeta();
-            if (meta instanceof SpawnEggMeta) {
-                SpawnEggMeta egg = (SpawnEggMeta) meta;
-                material = egg.getSpawnedType().name() + "_SPAWN_EGG";
-            }
-        }
 
         // Potions used the items data value to store
         // information about the type of potion in 1.8
