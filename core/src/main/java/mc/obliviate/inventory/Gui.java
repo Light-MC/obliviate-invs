@@ -31,6 +31,8 @@ import java.util.function.Consumer;
 
 public abstract class Gui implements InventoryHolder {
 
+	private static Icon backButton;
+
 	private final Map<Integer, GuiIcon> registeredIcons;
 	private final List<MyScheduledTask> taskList = new ArrayList<>();
 	private final String id;
@@ -145,6 +147,7 @@ public abstract class Gui implements InventoryHolder {
 		}
 
 		this.player.openInventory(inventory);
+		MenuStackHandler.pushMenu(this.player, this);
 	}
 
 	/**
@@ -465,5 +468,19 @@ public abstract class Gui implements InventoryHolder {
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
+	}
+
+	public Icon getBackButton() {
+		if (MenuStackHandler.getPreviousMenu(this.player) == null) {
+			return null;
+		}
+
+		Gui.backButton.onClick(e -> MenuStackHandler.navigateBack(this.player));
+
+		return Gui.backButton.clone();
+	}
+
+	public static void setBackButton(Icon backButton) {
+		Gui.backButton = backButton;
 	}
 }
